@@ -1,0 +1,30 @@
+/************************************************************************************
+Faculdade de Tecnologia de Franca “Doutor Thomaz Novelino”
+TRABALHO DE LINGUAGEM DE PROGRAMAÇÃO - 2016/2
+Autor:
+Thiago Moreira <moreira.g.thiago@gmail.com> - RA 1090481613034
+Luis Gustavo <email> - RA 10904816130
+Data de criação do arquivo:
+00/11/2016
+************************************************************************************/
+
+//BIBLIOTECAS
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+
+int main()
+{
+    //IDIOMA
+    setlocale(LC_ALL, "Portuguese");
+    char vetstring[20][100]; //declarando um vetor de 20 strings com 100 posições cada
+    int con = 0; // declarando e inicializando a variável inteira contador
+
+    for(;;) //loop infinito
+    {
+        printf("Informe o seu nome: ");
+        fgets(vetstring, 19, stdin);
+    }// fim do loop infinito
+    return 0;
+}
