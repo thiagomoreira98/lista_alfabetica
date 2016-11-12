@@ -12,21 +12,30 @@ Data de criação do arquivo:
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-
+#define TAM 20
 
 int main()
 {
     //IDIOMA
     setlocale(LC_ALL, "Portuguese");
-    char vetstring[20][100]; //declarando um vetor de 20 strings com 100 posições cada
-    int con = 0; // declarando e inicializando a variável inteira contador
+    char vetstring[TAM][100]; //declarando um vetor de 20 strings com 100 posições cada
+    int i, con = 0; // declarando e inicializando a variável inteira contador
 
     for(;;) //loop infinito
     {
         printf("Informe o seu nome: ");
-        fgets(vetstring, 19, stdin);
+        fgets(vetstring, TAM - 1, stdin);
+
+        for(i = 0; i < TAM; i++)
+        {
+        	strcmp(vetstring[i]);
+        }
+
+        for(i = 0; i < TAM; i++)
+        {
+        	printf("%s", vetstring[i]);
+        }
     }// fim do loop infinito
 
-    //1
     return 0;
 }
