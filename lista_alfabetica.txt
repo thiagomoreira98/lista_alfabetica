@@ -26,5 +26,7 @@ int main()
         printf("Informe o seu nome: ");
         fgets(vetstring, 19, stdin);
     }// fim do loop infinito
+
+    //ola testando
     return 0;
 }
