@@ -11,6 +11,7 @@ Data de criação do arquivo:
 //BIBLIOTECAS
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 #define TAM 20
 
@@ -24,16 +25,16 @@ int main()
     for(;;) //loop infinito
     {
         printf("Informe o seu nome: ");
-        fgets(vetstring, TAM - 1, stdin);
+        fgets(vetstring[con], 98, stdin);
 
-        for(i = 0; i < TAM; i++)
+        if(con > 19)
         {
-        	strcmp(vetstring[i]);
+        	break;
         }
 
-        for(i = 0; i < TAM; i++)
+        for(i = 0; i < con; i++)
         {
-        	printf("%s", vetstring[i]);
+        	puts(vetstring[i]);
         }
     }// fim do loop infinito
 
