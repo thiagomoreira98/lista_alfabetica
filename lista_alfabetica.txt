@@ -3,38 +3,82 @@ Faculdade de Tecnologia de Franca “Doutor Thomaz Novelino”
 TRABALHO DE LINGUAGEM DE PROGRAMAÇÃO - 2016/2
 Autor:
 Thiago Moreira <moreira.g.thiago@gmail.com> - RA 1090481613034
-Luis Gustavo <email> - RA 10904816130
+Luís Gustavo Silveira <gustavo.luis81@hotmail.com> - RA 1090481613028
 Data de criação do arquivo:
-00/11/2016
+13/11/2016
 ************************************************************************************/
 
 //BIBLIOTECAS
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <locale.h>
-#define TAM 20
+#include <ctype.h>
+#include <string.h>
+
+#define LINHA 20
+#define COLUNA 100
+
+//Criando uma função para identificar o sistema
+void limpar_tela()
+{
+#ifdef LINUX
+system("clear");
+#elif defined WIN32
+system("cls");
+#else
+#error Plataforma não suportada
+#endif
+}
 
 int main()
 {
     //IDIOMA
-    setlocale(LC_ALL, "Portuguese");
-    char vetstring[TAM][100]; //declarando um vetor de 20 strings com 100 posições cada
-    int i, con = 0; // declarando e inicializando a variável inteira contador
+    setlocale(LC_ALL, " ");
+    char vetstring[LINHA][COLUNA], aux[COLUNA], conti;
+    int j, i, x, con = 0;
 
     for(;;) //loop infinito
     {
-        printf("Informe o seu nome: ");
-        fgets(vetstring[con], 98, stdin);
+        conti = ' ';
+        printf("digite um nome :");
+        fgets(vetstring[con],COLUNA-2, stdin); //Lendo o nome
 
-        if(con > 19)
+        con++;
+        if(con > 1)
         {
-        	break;
+            for(j=0; j<con; j++)
+            {
+                strcpy(aux,vetstring[j]);
+                i = j - 1;
+                while(i >= 0 && strcmp(vetstring[i], aux) > 0)
+                {
+                    strcpy(vetstring[i + 1],vetstring[i]);
+                    i--;
+                }
+                strcpy(vetstring[i + 1],aux);
+            }
+            printf("\nLista De nomes: \n");
+            for(i = 0; i < con; i++)
+            {
+                puts(vetstring[i]);
+            }
+
         }
-
-        for(i = 0; i < con; i++)
+        if(con <= 19)
         {
-        	puts(vetstring[i]);
+            while(conti != 'S'&& conti != 'N')
+            {
+                printf("Deseja inserir outro nome(S/N)");
+                scanf("%s", &conti);
+                conti=toupper(conti);
+                if (conti == 'S')
+                {
+                    limpar_tela();
+                    getchar();
+                }
+                if(conti == 'N')break;
+            }
+            if(conti == 'N')break;
         }
     }// fim do loop infinito
 
