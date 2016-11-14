@@ -18,17 +18,20 @@ Data de criação do arquivo:
 #define LINHA 20
 #define COLUNA 100
 
+
 int main()
 {
     //IDIOMA
     setlocale(LC_ALL, " ");
-    char vetstring[LINHA][COLUNA],aux[COLUNA],conti; //declarando um vetor de 20 strings com 100 posições cada
-    int j, i,x, con = 0; // declarando e inicializando a variável inteira contador
+    char vetstring[LINHA][COLUNA],aux[COLUNA],conti; 
+    int j,i,x, con = 0;  
 
     for(;;) //loop infinito
     {
+        conti=' ';
         printf("digite um nome :");
-        fgets(vetstring[con],98, stdin);
+        fgets(vetstring[con],COLUNA-2, stdin);
+
         con++;
         if(con>1)
         {
@@ -50,19 +53,27 @@ int main()
             }
 
         }
-        printf("Deseja inserir outro nome(S/N)");
-        scanf("%s",&conti);
-        conti=toupper(conti);
-        if (conti=='S')
+        if(con<=19)
         {
-            continue;
+            while(conti!='S'&& conti!='N')
+            {
+                printf("Deseja inserir outro nome(S/N)");
+                scanf("%s",&conti);
+                conti=toupper(conti);
+                if (conti=='S')
+                {
+                    system("cls");
+                    getchar();
+                }
+                if(conti=='N')break;
+            }
+            if(conti=='N')break;
         }
-        if(conti=='N'||con==19)
-        {
-            break;
-        }
-
     }// fim do loop infinito
 
     return 0;
 }
+
+
+
+
