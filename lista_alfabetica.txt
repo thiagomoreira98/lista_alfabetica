@@ -19,7 +19,7 @@ Data de criação do arquivo:
 #define COLUNA 100
 
 //Criando uma função para identificar o sistema
-void limpar_tela()
+void limpa_tela()
 {
 	#ifdef LINUX
 		system("clear");
@@ -40,8 +40,8 @@ int main()
     for(;;) //loop infinito
     {
         conti = ' ';
-        printf("digite um nome :");
-        fgets(vetstring[con],COLUNA-2, stdin); //Lendo o nome
+        printf("digite um nome: ");
+        fgets(vetstring[con], COLUNA - 2, stdin); //Lendo o nome
 
         con++;
         if(con > 1)
@@ -73,7 +73,7 @@ int main()
                 conti=toupper(conti);
                 if (conti == 'S')
                 {
-                    limpar_tela();
+                    limpa_tela();
                     getchar();
                 }
                 if(conti == 'N')break;
