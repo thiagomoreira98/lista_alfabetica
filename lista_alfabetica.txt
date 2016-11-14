@@ -1,10 +1,10 @@
 /************************************************************************************
-Faculdade de Tecnologia de Franca ìDoutor Thomaz Novelinoî
-TRABALHO DE LINGUAGEM DE PROGRAMA«√O - 2016/2
+Faculdade de Tecnologia de Franca ‚ÄúDoutor Thomaz Novelino‚Äù
+TRABALHO DE LINGUAGEM DE PROGRAMA√á√ÉO - 2016/2
 Autor:
 Thiago Moreira <moreira.g.thiago@gmail.com> - RA 1090481613034
-LuÌs Gustavo Silveira <gustavo.luis81@hotmail.com> - RA 1090481613028
-Data de criaÁ„o do arquivo:
+Lu√≠s Gustavo Silveira <gustavo.luis81@hotmail.com> - RA 1090481613028
+Data de cria√ß√£o do arquivo:
 13/11/2016
 ************************************************************************************/
 
@@ -18,7 +18,7 @@ Data de criaÁ„o do arquivo:
 #define LINHA 20
 #define COLUNA 100
 
-//Criando uma funÁ„o para identificar o sistema
+//Criando uma fun√ß√£o para identificar o sistema
 void limpa_tela()
 {
 	#ifdef LINUX
@@ -26,7 +26,7 @@ void limpa_tela()
 	#elif defined WIN32
 		system("cls");
 	#else
-		#error Plataforma n„o suportada
+		#error Plataforma n√£o suportada
 	#endif
 }
 
@@ -34,28 +34,36 @@ int main()
 {
     //IDIOMA
     setlocale(LC_ALL, " ");
-    char vetstring[LINHA][COLUNA], aux[COLUNA], conti;
-    int j, i, x, con = 0;
+    char vetstring[LINHA][COLUNA],aux[COLUNA],aux2[COLUNA],conti;
+    int j,i,x,y, con = 0;
 
     for(;;) //loop infinito
     {
-        conti = ' ';
-        printf("digite um nome: ");
-        fgets(vetstring[con], COLUNA - 2, stdin); //Lendo o nome
+        conti=' ';
+        printf("digite um nome :");
+        fgets(vetstring[con],COLUNA-2, stdin);
 
         con++;
-        if(con > 1)
+        if(con>1)
         {
             for(j=0; j<con; j++)
             {
                 strcpy(aux,vetstring[j]);
-                i = j - 1;
-                while(i >= 0 && strcmp(vetstring[i], aux) > 0)
+                for(y=0;y<=COLUNA;y++)
                 {
-                    strcpy(vetstring[i + 1],vetstring[i]);
+                    if(isupper(aux[y]))
+                    {
+                        aux2[y]=tolower(aux[y]);
+                    }
+
+                }
+                i = j-1;
+                while(i >= 0 && strcmp(vetstring[i], aux2) > 0)
+                {
+                    strcpy(vetstring[i+1],vetstring[i]);
                     i--;
                 }
-                strcpy(vetstring[i + 1],aux);
+                strcpy(vetstring[i+1],aux);
             }
             printf("\nLista De nomes: \n");
             for(i = 0; i < con; i++)
@@ -64,21 +72,21 @@ int main()
             }
 
         }
-        if(con <= 19)
+        if(con<=19)
         {
-            while(conti != 'S'&& conti != 'N')
+            while(conti!='S'&& conti!='N')
             {
                 printf("Deseja inserir outro nome(S/N)");
-                scanf("%s", &conti);
+                scanf("%s",&conti);
                 conti=toupper(conti);
-                if (conti == 'S')
+                if (conti=='S')
                 {
                     limpa_tela();
                     getchar();
                 }
-                if(conti == 'N')break;
+                if(conti=='N')break;
             }
-            if(conti == 'N')break;
+            if(conti=='N')break;
         }
     }// fim do loop infinito
 
