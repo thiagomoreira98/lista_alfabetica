@@ -17,8 +17,6 @@ Data de criação do arquivo:
 
 #define LINHA 20
 #define COLUNA 100
-
-//Criando uma função para identificar o sistema
 void limpa_tela()
 {
 	#ifdef LINUX
@@ -35,27 +33,29 @@ int main()
     //IDIOMA
     setlocale(LC_ALL, " ");
     char vetstring[LINHA][COLUNA],aux[COLUNA],aux2[COLUNA],conti;
-    int j,i,x,y, con = 0;
+    int j,i,y, con = 0;
 
     for(;;) //loop infinito
     {
         conti=' ';
         printf("digite um nome :");
         fgets(vetstring[con],COLUNA-2, stdin);
-
         con++;
         if(con>1)
         {
             for(j=0; j<con; j++)
             {
                 strcpy(aux,vetstring[j]);
-                for(y=0;y<=COLUNA;y++)
+                for(y=0;y<=strlen(aux);y++)
                 {
-                    if(isupper(aux[y]))
+                    if(islower(aux[y]))
                     {
-                        aux2[y]=tolower(aux[y]);
+                        aux2[y]=toupper(aux[y]);
                     }
-
+                    else
+                    {
+                         aux2[y]=aux[y];
+                    }
                 }
                 i = j-1;
                 while(i >= 0 && strcmp(vetstring[i], aux2) > 0)
@@ -70,8 +70,8 @@ int main()
             {
                 puts(vetstring[i]);
             }
-
         }
+	
         if(con<=19)
         {
             while(conti!='S'&& conti!='N')
