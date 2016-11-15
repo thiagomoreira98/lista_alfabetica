@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+#define LINHA 20
+#define COLUNA 100
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese");
+    char lista[LINHA][COLUNA], cont, string1[COLUNA], string2[COLUNA];
+    unsigned int contador = 0, i, verif, tam;
+
+    for(;;)
+   {
+        do
+        {
+            printf("Digite um nome: ");
+            fgets(lista[contador], COLUNA - 1, stdin);
+            strcpy(string1, lista[contador]);
+            tam = strlen(lista[contador]);
+            //string1 = "";
+            contador++;
+            verif = strcmp(lista[contador], string1);
+            if(verif > 0) //então string1 > string2
+            {
+                strcpy(string2);
+                strcpy();
+                strcpy();
+            }
+            system("cls");
+            printf("LISTA DE NOMES:\n\n");
+            for (i = 0; i <= tam; i++)
+            {
+                printf("%s\n", lista[i]);
+            }
+
+            if(contador > 20)
+            {
+                system("cls");
+                printf("Esta lista esta cheia!!!");
+                break;
+            }
+            printf("Deseja continuar?(S/N)");
+            scanf("%c", &cont);
+            getchar();
+            system("cls");
+        }while((cont == 's' || cont == 'S') && contador <= 20);
+
+
+
+        if (cont == 'n' || cont == 'N')
+        {
+            break;
+        }
+    }
+    return 0;
+}
