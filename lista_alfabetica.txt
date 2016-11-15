@@ -17,8 +17,6 @@ Data de criação do arquivo:
 
 #define LINHA 20
 #define COLUNA 100
-
-//Criando uma função para identificar o sistema
 void limpa_tela()
 {
 	#ifdef LINUX
@@ -34,51 +32,61 @@ int main()
 {
     //IDIOMA
     setlocale(LC_ALL, " ");
-    char vetstring[LINHA][COLUNA], aux[COLUNA], conti;
-    int j, i, x, con = 0;
+    char vetstring[LINHA][COLUNA],aux[COLUNA],aux2[COLUNA],conti;
+    int j,i,y, con = 0;
 
     for(;;) //loop infinito
     {
-        conti = ' ';
-        printf("digite um nome: ");
-        fgets(vetstring[con], COLUNA - 2, stdin); //Lendo o nome
-
+        conti=' ';
+        printf("digite um nome :");
+        fgets(vetstring[con],COLUNA-2, stdin);
         con++;
-        if(con > 1)
+        if(con>1)
         {
             for(j=0; j<con; j++)
             {
                 strcpy(aux,vetstring[j]);
-                i = j - 1;
-                while(i >= 0 && strcmp(vetstring[i], aux) > 0)
+                for(y=0;y<=strlen(aux);y++)
                 {
-                    strcpy(vetstring[i + 1],vetstring[i]);
+                    if(islower(aux[y]))
+                    {
+                        aux2[y]=toupper(aux[y]);
+                    }
+                    else
+                    {
+                         aux2[y]=aux[y];
+                    }
+                }
+                i = j-1;
+                while(i >= 0 && strcmp(vetstring[i], aux2) > 0)
+                {
+                    strcpy(vetstring[i+1],vetstring[i]);
                     i--;
                 }
-                strcpy(vetstring[i + 1],aux);
+                strcpy(vetstring[i+1],aux);
             }
             printf("\nLista De nomes: \n");
             for(i = 0; i < con; i++)
             {
                 puts(vetstring[i]);
             }
-
         }
-        if(con <= 19)
+
+        if(con<=19)
         {
-            while(conti != 'S'&& conti != 'N')
+            while(conti!='S'&& conti!='N')
             {
                 printf("Deseja inserir outro nome(S/N)");
-                scanf("%s", &conti);
+                scanf("%s",&conti);
                 conti=toupper(conti);
-                if (conti == 'S')
+                if (conti=='S')
                 {
                     limpa_tela();
                     getchar();
                 }
-                if(conti == 'N')break;
+                if(conti=='N')break;
             }
-            if(conti == 'N')break;
+            if(conti=='N')break;
         }
     }// fim do loop infinito
 
