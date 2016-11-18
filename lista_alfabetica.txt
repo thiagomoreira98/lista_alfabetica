@@ -1,4 +1,4 @@
-/************************************************************************************
+﻿/************************************************************************************
 Faculdade de Tecnologia de Franca “Doutor Thomaz Novelino”
 TRABALHO DE LINGUAGEM DE PROGRAMAÇÃO - 2016/2
 Autor:
@@ -17,25 +17,23 @@ Data de criação do arquivo:
 
 #define LINHA 20
 #define COLUNA 100
-void limpa_tela()
+
+//Procedimento para identificar o sistema
+void clear_cls()
 {
-	#ifdef LINUX
-		system("clear");
-	#elif defined WIN32
+	#ifdef WIN32
 		system("cls");
 	#else
-		#error Plataforma não suportada
+		system("clear");
 	#endif
 }
-
 int main()
 {
-    //IDIOMA
     setlocale(LC_ALL, " ");
     char vetstring[LINHA][COLUNA],aux[COLUNA],aux2[COLUNA],conti;
     int j,i,y, con = 0;
 
-    for(;;) //loop infinito
+    for(;;) //Loop infinito
     {
         conti=' ';
         printf("digite um nome :");
@@ -71,11 +69,7 @@ int main()
                 puts(vetstring[i]);
             }
         }
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> a6550a8711efe5a470ccf26cb5761a5a8a9666b4
         if(con<=19)
         {
             while(conti!='S'&& conti!='N')
@@ -85,14 +79,14 @@ int main()
                 conti=toupper(conti);
                 if (conti=='S')
                 {
-                    limpa_tela();
+                    clear_cls();
                     getchar();
                 }
                 if(conti=='N')break;
             }
             if(conti=='N')break;
         }
-    }// fim do loop infinito
+    } //Fim do loop infinito
 
     return 0;
 }
