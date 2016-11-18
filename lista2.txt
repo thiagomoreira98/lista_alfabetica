@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
@@ -6,54 +6,83 @@
 #define LINHA 20
 #define COLUNA 100
 
+//função para identificar o tipo de sistema
+void clear_cls()
+{
+    #ifdef WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
+//Prototipo do procedimento de troca _ordem
+void troca_ordem(unsigned int j, unsigned int i, char lista[20][100]);
+
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
-    char lista[LINHA][COLUNA], cont, string1[COLUNA], string2[COLUNA];
-    unsigned int contador = 0, i, verif, tam;
+    char lista[LINHA][COLUNA], cont, string1[COLUNA];
+    unsigned int contador = 0, i;
 
-    for(;;)
+    for(;;) //Loop infinito
    {
         do
         {
-            printf("Digite um nome: ");
+            printf("DIGITE UM NOME: ");
             fgets(lista[contador], COLUNA - 1, stdin);
+            for(i = 0; i <= contador; i++)
+            {
+                if(strcmp(lista[i], string1) > 0)
+                    {
+                        troca_ordem(i, contador, lista);
+                        break;
+                    }
+            }
             strcpy(string1, lista[contador]);
-            tam = strlen(lista[contador]);
-            //string1 = "";
-            contador++;
-            verif = strcmp(lista[contador], string1);
-            if(verif > 0) //então string1 > string2
-            {
-                strcpy(string2);
-                strcpy();
-                strcpy();
-            }
-            system("cls");
+            clear_cls();
             printf("LISTA DE NOMES:\n\n");
-            for (i = 0; i <= tam; i++)
+            for (i = 0; i <= contador; i++)
             {
-                printf("%s\n", lista[i]);
+                printf("%s", lista[i]);
             }
-
-            if(contador > 20)
-            {
-                system("cls");
-                printf("Esta lista esta cheia!!!");
-                break;
-            }
-            printf("Deseja continuar?(S/N)");
+            contador++;
+            printf("\nDESEJA INSERIR OUTRO NOME?(S/N)");
             scanf("%c", &cont);
             getchar();
-            system("cls");
+            clear_cls();
         }while((cont == 's' || cont == 'S') && contador <= 20);
 
-
-
-        if (cont == 'n' || cont == 'N')
+        while(cont != 'n' && cont != 's')
         {
+            printf("DESEJA INSERIR OUTRO NOME?(S/N)");
+            scanf("%c", &cont);
+            getchar();
+            clear_cls();
+            cont = tolower(cont);
+        }
+
+        if(cont == 'n')
+        {
+            printf("PROGRAMA FINALIZADO!!!\n");
             break;
         }
-    }
+
+        if(contador > 20)
+        {
+            clear_cls();
+            printf("ESTA LISTA ESTA CHEIA!!!\n");
+            break;
+        }
+
+    } // fim do loop infinito
     return 0;
+}
+
+void troca_ordem(unsigned int j, unsigned int i, char lista[20][100])
+{
+    for (i = i; j < i; i--)
+    {
+        strcpy(lista[i], lista[i - 1]);
+    }
 }
