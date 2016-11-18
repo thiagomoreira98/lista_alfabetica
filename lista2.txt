@@ -12,7 +12,6 @@ Data de criação do arquivo:
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <locale.h>
 
 #define LINHA 20
@@ -28,7 +27,7 @@ void clear_cls()
     #endif
 }
 //Prototipo do procedimento de troca_ordem
-void troca_ordem(unsigned int j, unsigned int i, char lista[LINHA][COLUNA]);
+void troca_ordem( unsigned int i, char lista[LINHA][COLUNA]);
 
 int main()
 {
@@ -42,15 +41,7 @@ int main()
         {
             printf("DIGITE UM NOME: ");
             fgets(lista[contador], COLUNA - 1, stdin);
-            for(i = 0; i <= contador; i++)
-            {
-                if(strcmp(lista[i], string1) > 0)
-                    {
-                        troca_ordem(i, contador, lista);
-                        break;
-                    }
-            }
-            strcpy(string1, lista[contador]);
+            troca_ordem( contador, lista);
             clear_cls();
             printf("LISTA DE NOMES:\n\n");
             for (i = 0; i <= contador; i++)
@@ -63,7 +54,7 @@ int main()
             getchar();
             continuar = tolower(continuar);
             clear_cls();
-        }while(continuar == 'S' && contador <= 20);
+        }while(continuar == 's' && contador < 20);
 
         while(continuar != 'n' && continuar != 's')
         {
@@ -80,7 +71,7 @@ int main()
             break;
         }
 
-        if(contador > 20)
+        if(contador >= 20)
         {
             clear_cls();
             printf("ESTA LISTA ESTA CHEIA!!!\n");
@@ -91,10 +82,22 @@ int main()
     return 0;
 }
 
-void troca_ordem(unsigned int j, unsigned int i, char lst[LINHA][COLUNA])
-{
-    for (i = i; j < i; i--)
-    {
-        strcpy(lst[i], lst[i - 1]);
-    }
+void troca_ordem( unsigned int i, char lista[LINHA][COLUNA])
+{ char aux[100];
+  int j,x;
+
+
+             for(j=0; j<i+1; j++)
+            {
+                strcpy(aux,lista[j]);
+
+                x = j-1;
+                while(x >= 0 && strcmpi(lista[x], aux) > 0)
+                {
+                    strcpy(lista[x+1],lista[x]);
+                    x--;
+                }
+                strcpy(lista[x+1],aux);
+            }
+
 }
