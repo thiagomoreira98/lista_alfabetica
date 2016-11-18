@@ -1,6 +1,18 @@
-﻿#include <stdio.h>
+﻿/************************************************************************************
+Faculdade de Tecnologia de Franca “Doutor Thomaz Novelino”
+TRABALHO DE LINGUAGEM DE PROGRAMAÇÃO - 2016/2
+Autor:
+Thiago Moreira <moreira.g.thiago@gmail.com> - RA 1090481613034
+Luís Gustavo Silveira <gustavo.luis81@hotmail.com> - RA 1090481613028
+Data de criação do arquivo:
+13/11/2016
+************************************************************************************/
+
+//BIBLIOTECAS
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <locale.h>
 
 #define LINHA 20
@@ -15,14 +27,13 @@ void clear_cls()
         system("clear");
     #endif
 }
-
-//Prototipo do procedimento de troca _ordem
-void troca_ordem(unsigned int j, unsigned int i, char lista[20][100]);
+//Prototipo do procedimento de troca_ordem
+void troca_ordem(unsigned int j, unsigned int i, char lista[LINHA][COLUNA]);
 
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
-    char lista[LINHA][COLUNA], cont, string1[COLUNA];
+    char lista[LINHA][COLUNA], continuar, string1[COLUNA];
     unsigned int contador = 0, i;
 
     for(;;) //Loop infinito
@@ -48,21 +59,22 @@ int main()
             }
             contador++;
             printf("\nDESEJA INSERIR OUTRO NOME?(S/N)");
-            scanf("%c", &cont);
+            scanf("%c", &continuar);
             getchar();
+            continuar = tolower(continuar);
             clear_cls();
-        }while((cont == 's' || cont == 'S') && contador <= 20);
+        }while(continuar == 'S' && contador <= 20);
 
-        while(cont != 'n' && cont != 's')
+        while(continuar != 'n' && continuar != 's')
         {
             printf("DESEJA INSERIR OUTRO NOME?(S/N)");
-            scanf("%c", &cont);
+            scanf("%c", &continuar);
             getchar();
+            continuar = tolower(continuar);
             clear_cls();
-            cont = tolower(cont);
         }
 
-        if(cont == 'n')
+        if(continuar == 'n')
         {
             printf("PROGRAMA FINALIZADO!!!\n");
             break;
@@ -79,10 +91,10 @@ int main()
     return 0;
 }
 
-void troca_ordem(unsigned int j, unsigned int i, char lista[20][100])
+void troca_ordem(unsigned int j, unsigned int i, char lst[LINHA][COLUNA])
 {
     for (i = i; j < i; i--)
     {
-        strcpy(lista[i], lista[i - 1]);
+        strcpy(lst[i], lst[i - 1]);
     }
 }
